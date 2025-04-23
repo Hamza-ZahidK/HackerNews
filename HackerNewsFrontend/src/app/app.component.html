@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="table-header">
+    <h1>Hacker News</h1>
+  </div>
+  <div class="card">
+    <p-table #dt1 [value]="stories" [paginator]="true" [rows]="20" 
+      [loading]="loading" [globalFilterFields]="['title']" [tableStyle]="{ 'min-width': '80rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-end">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" [(ngModel)]="searchValue" class="input-feild" (input)="onGlobalSearch($event)"
+              placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>By</th>
+          <th>Score</th>
+          <th>Time</th>
+          <th>Type</th>
+          <th>URL</th>
+          <th>Descendants</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-story>
+        <tr class="custom-row">
+          <td>{{ story.id }}</td>
+          <td>
+            <a *ngIf="story.url" [href]="story.url" target="_blank">{{ story.title }}</a>
+            <span *ngIf="!story.url">{{ story.title }}</span>
+          </td>
+          <td>{{ story.by }}</td>
+          <td>{{ story.score }}</td>
+          <td>{{ story.time * 1000 | date: 'short' }}</td>
+          <td>{{ story.type }}</td>
+          <td>
+            <a *ngIf="story.url" [href]="story.url" target="_blank">Link</a>
+          </td>
+          <td class="descendants">{{ story.descendants }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8" class="text-center text-gray-500">No stories found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
