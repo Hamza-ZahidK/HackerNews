@@ -398,3 +398,8 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+*.HackerNewsFrontend/.angular
+*.HackerNewsFrontend/.vscode
+*.HackerNewsFrontend/node_modules
+
